@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Poisonousapple extends Actor
 {
-    int spee = 1;
+    int spee = 2;
     
     public Poisonousapple()
     {
@@ -26,13 +26,12 @@ public class Poisonousapple extends Actor
         MyWorld world = (MyWorld) getWorld();
         if(getY() >= world.getHeight())
         {
-            world.gameOver();
             world.removeObject(this);
         }
     }
     
     public void setSpee(int spdd)
     {
-        spee = spdd;
+        spee = 2 * spdd;
     }
 }
