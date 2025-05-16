@@ -8,11 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Poisonousapple extends Actor
 {
-    int speed = 1;
+    int spee = 1;
     
     public Poisonousapple()
     {
-        GreenfootImage image = new GreenfootImage("apple.png");
+        GreenfootImage image = new GreenfootImage("Poisonousapple.png");
         image.scale(40, 40);
         setImage(image);
     }
@@ -20,7 +20,7 @@ public class Poisonousapple extends Actor
     public void act()
     {
         int x = getX();
-        int y = getY() + speed;
+        int y = getY() + spee;
         setLocation(x, y);
         
         MyWorld world = (MyWorld) getWorld();
@@ -31,8 +31,8 @@ public class Poisonousapple extends Actor
         }
     }
     
-    public void setSpeed(int spd)
+    public void setSpee(int spdd)
     {
-        speed = spd;
+        spee = spdd;
     }
 }
