@@ -5,6 +5,7 @@ public class MyWorld extends World {
     Label scoreLabel;
     int level = 1;
     boolean gameOver = false;
+    Elephant elephant;
     
     /**
      * Constructor for objects of class MyWorld.
@@ -19,7 +20,7 @@ public class MyWorld extends World {
         setBackground(bg);
         
         //Create the elephant object
-        Elephant elephant = new Elephant();
+        elephant = new Elephant();
         addObject(elephant, 300, 300);
         
         //Create a label
@@ -65,6 +66,11 @@ public class MyWorld extends World {
         {
             level += 1;
         }
+         if(score == 10)
+        {
+            DarkWorld darkWorld = new DarkWorld(score, getElephant());
+            Greenfoot.setWorld(darkWorld);
+        }
     }
     /**
      * Create a new apple at random location at top of screen
@@ -76,5 +82,9 @@ public class MyWorld extends World {
         int x = Greenfoot.getRandomNumber(600);
         int y = 0;
         addObject(apple, x, y);
+    }
+    
+    public Elephant getElephant(){
+        return elephant;
     }
 }
