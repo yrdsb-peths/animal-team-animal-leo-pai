@@ -29,10 +29,17 @@ public class Apple extends Actor
         setLocation(x, y);
         
         // Remove apple and draw game over when apple gets to bottom
-        MyWorld world = (MyWorld) getWorld();
+        World world = getWorld();
         if(getY() >= world.getHeight())
         {
-            world.gameOver();
+            if (world instanceof MyWorld)
+            {
+                ((MyWorld) world).gameOver();
+            }
+            else if (world instanceof DarkWorld)
+            {
+                ((DarkWorld) world).gameOver();
+            }
             world.removeObject(this);
         }
         

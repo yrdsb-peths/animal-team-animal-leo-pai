@@ -90,20 +90,20 @@ public class Elephant extends Actor
         if(isTouching(Apple.class))
         {
             removeTouching(Apple.class);
-            MyWorld world = (MyWorld) getWorld();
-            world.createApple();
-            world.increaseScore();
+            World world = getWorld();
+            if (world instanceof MyWorld)
+            {
+                ((MyWorld) world).createApple();
+                ((MyWorld) world).increaseScore();
+            }
+            else if (world instanceof DarkWorld)
+            {
+                ((DarkWorld) world).createApple();  
+                ((DarkWorld) world).increaseScore();
+            }
             elephantSounds.play();
         }
         
-        if(isTouching(Poisonousapple.class))
-        {
-            removeTouching(Poisonousapple.class);
-            MyWorld world = (MyWorld) getWorld();
-            world.createPoisonousapple();
-            world.decreaseScore();
-            elephantSounds.play();
-        }
        
     }
 }

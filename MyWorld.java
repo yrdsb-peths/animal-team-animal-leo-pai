@@ -49,8 +49,8 @@ public class MyWorld extends World {
         {
             if (Greenfoot.isKeyDown("space")) 
             {
-            TiTitleScreen titleScreen = new TiTitleScreen(); 
-            Greenfoot.setWorld(titleScreen);
+                TiTitleScreen titleScreen = new TiTitleScreen(); 
+                Greenfoot.setWorld(titleScreen);
             }
         }
     }
@@ -96,10 +96,9 @@ public class MyWorld extends World {
         addObject(apple, x, y);
     }
     
-<<<<<<< HEAD
     public Elephant getElephant(){
         return elephant;
-=======
+    }
     public void createPoisonousapple()
     {
         Poisonousapple poisonousapple = new Poisonousapple();
@@ -107,6 +106,5 @@ public class MyWorld extends World {
         int x = Greenfoot.getRandomNumber(600);
         int y = 0;
         addObject(poisonousapple, x, y);
->>>>>>> 0ebc86e772d2f778f97ee040b98a61d76316341b
     }
 }

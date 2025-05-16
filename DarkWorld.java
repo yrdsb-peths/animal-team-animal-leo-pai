@@ -12,6 +12,7 @@ public class DarkWorld extends World
     private int level = 1;
     private Elephant elephant;
     Label scoreLabel;
+    boolean gameOver = false;
     /**
      * Constructor for objects of class DarkWorld.
      * 
@@ -42,6 +43,11 @@ public class DarkWorld extends World
     public void increaseScore(){
         score++;
         scoreLabel.setValue(score);
+        
+        if(score % 5 == 0)
+        {
+            level += 1;
+        }
     }
     
     public void createApple()
@@ -51,5 +57,26 @@ public class DarkWorld extends World
         int x = Greenfoot.getRandomNumber(600);
         int y = 0;
         addObject(apple, x, y);
+    }
+    
+    public void gameOver()
+    {
+        gameOver = true;
+        Label gameOverLabel = new Label("Game Over", 100);
+        Label gameOverLabel1 = new Label("Press < space > restart game", 40);
+        addObject(gameOverLabel, 300, 200);
+        addObject(gameOverLabel1, 300, 300);
+    }
+    
+    public void act()
+    {
+        if (gameOver)
+        {
+            if (Greenfoot.isKeyDown("space")) 
+            {
+                TiTitleScreen titleScreen = new TiTitleScreen(); 
+                Greenfoot.setWorld(titleScreen);
+            }
+        }
     }
 }
