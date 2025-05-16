@@ -95,5 +95,15 @@ public class Elephant extends Actor
             world.increaseScore();
             elephantSounds.play();
         }
+        
+        if(isTouching(Poisonousapple.class))
+        {
+            removeTouching(Poisonousapple.class);
+            MyWorld world = (MyWorld) getWorld();
+            world.createPoisonousapple();
+            world.decreaseScore();
+            elephantSounds.play();
+        }
+       
     }
 }

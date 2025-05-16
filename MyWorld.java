@@ -28,6 +28,7 @@ public class MyWorld extends World {
         addObject(scoreLabel, 50, 50);
         
         createApple();
+        createPoisonousapple();
     }
     
     /**
@@ -72,6 +73,17 @@ public class MyWorld extends World {
             Greenfoot.setWorld(darkWorld);
         }
     }
+    
+    public void decreaseScore()
+    {
+        score--;
+        scoreLabel.setValue(score);
+        
+        if(score % 5 == 0)
+        {
+            level -= 1;
+        }
+    }
     /**
      * Create a new apple at random location at top of screen
      */
@@ -84,7 +96,17 @@ public class MyWorld extends World {
         addObject(apple, x, y);
     }
     
+<<<<<<< HEAD
     public Elephant getElephant(){
         return elephant;
+=======
+    public void createPoisonousapple()
+    {
+        Poisonousapple poisonousapple = new Poisonousapple();
+        poisonousapple.setSpee(level);
+        int x = Greenfoot.getRandomNumber(600);
+        int y = 0;
+        addObject(poisonousapple, x, y);
+>>>>>>> 0ebc86e772d2f778f97ee040b98a61d76316341b
     }
 }

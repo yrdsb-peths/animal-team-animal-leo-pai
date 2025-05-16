@@ -1,0 +1,37 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Poisonousapple here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Poisonousapple extends Actor
+{
+    int spee = 2;
+    
+    public Poisonousapple()
+    {
+        GreenfootImage image = new GreenfootImage("Poisonousapple.png");
+        image.scale(40, 40);
+        setImage(image);
+    }
+    
+    public void act()
+    {
+        int x = getX();
+        int y = getY() + spee;
+        setLocation(x, y);
+        
+        MyWorld world = (MyWorld) getWorld();
+        if(getY() >= world.getHeight())
+        {
+            world.removeObject(this);
+        }
+    }
+    
+    public void setSpee(int spdd)
+    {
+        spee = 2 * spdd;
+    }
+}
