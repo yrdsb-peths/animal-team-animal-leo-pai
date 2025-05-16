@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class DarkWorld here.
@@ -10,9 +11,11 @@ public class DarkWorld extends World
 {
     private int score;
     private int level = 1;
-    private Elephant elephant;
+    Elephant elephant;
     Label scoreLabel;
     boolean gameOver = false;
+    boolean havePApple = false;
+    
     /**
      * Constructor for objects of class DarkWorld.
      * 
@@ -38,6 +41,7 @@ public class DarkWorld extends World
         addObject(newLabel, 300, 50);
         
         createApple();
+        createPoisonousapple();
     }
     
     public void increaseScore(){
@@ -50,6 +54,27 @@ public class DarkWorld extends World
         }
     }
     
+    public void decreaseScore()
+    {
+        score--;
+        scoreLabel.setValue(score);
+        
+        if(score % 5 == 0)
+        {
+            level -= 1;
+        }
+        if(score < 10)
+        {
+            List<Apple> apples = getObjects(Apple.class);
+            for (Apple a : apples)
+            {
+                removeObject(a);
+            }
+            MyWorld myWorld = new MyWorld();
+            Greenfoot.setWorld(myWorld);
+        }
+    }
+    
     public void createApple()
     {
         Apple apple = new Apple();
@@ -57,6 +82,15 @@ public class DarkWorld extends World
         int x = Greenfoot.getRandomNumber(600);
         int y = 0;
         addObject(apple, x, y);
+    }
+    
+    public void createPoisonousapple()
+    {
+        Poisonousapple poisonousapple = new Poisonousapple();
+        poisonousapple.setSpee(level);
+        int x = Greenfoot.getRandomNumber(600);
+        int y = 0;
+        addObject(poisonousapple, x, y);
     }
     
     public void gameOver()
@@ -78,5 +112,18 @@ public class DarkWorld extends World
                 Greenfoot.setWorld(titleScreen);
             }
         }
+    }
+    
+    public Elephant getElephant(){
+        return elephant;
+    }
+    
+    public int getScore()
+    {
+        return score;
+    }
+    
+    public boolean isGameOver() {
+        return gameOver;
     }
 }

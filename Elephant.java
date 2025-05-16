@@ -103,7 +103,17 @@ public class Elephant extends Actor
             }
             elephantSounds.play();
         }
+        if(isTouching(Poisonousapple.class))
+        {
+            removeTouching(Poisonousapple.class);
+            World world = getWorld();
+            if (world instanceof DarkWorld)
+            {
+                ((DarkWorld) world).createPoisonousapple();  
+                ((DarkWorld) world).decreaseScore();
+            }
+            elephantSounds.play();
+        }
         
-       
     }
 }

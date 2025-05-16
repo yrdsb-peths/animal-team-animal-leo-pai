@@ -23,10 +23,17 @@ public class Poisonousapple extends Actor
         int y = getY() + spee;
         setLocation(x, y);
         
-        MyWorld world = (MyWorld) getWorld();
-        if(getY() >= world.getHeight())
+        World world = getWorld();
+        if ((world instanceof MyWorld && ((MyWorld) world).isGameOver()) || (world instanceof DarkWorld && ((DarkWorld) world).isGameOver())) {
+            return;
+        }
+        if(getY() >= world.getHeight()-1)
         {
             world.removeObject(this);
+            if(world instanceof DarkWorld)
+            {
+                ((DarkWorld) world).createPoisonousapple();
+            }
         }
     }
     
