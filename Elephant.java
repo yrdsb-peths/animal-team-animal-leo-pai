@@ -104,5 +104,6 @@ public class Elephant extends Actor
             world.decreaseScore();
             elephantSounds.play();
         }
+       
     }
 }
