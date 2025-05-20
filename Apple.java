@@ -27,12 +27,34 @@ public class Apple extends Actor
         int x = getX();
         int y = getY() + speed;
         setLocation(x, y);
+        World world = getWorld();
+        int currentScore = 0;
+        if ((world instanceof MyWorld && ((MyWorld) world).isGameOver()) || (world instanceof DarkWorld && ((DarkWorld) world).isGameOver())) {
+            return;
+        }
         
+        Poisonousapple p = (Poisonousapple) getOneIntersectingObject(Poisonousapple.class);
+        if (p != null){
+            getWorld().removeObject(this);
+            return;
+        }
+        
+        if(world instanceof MyWorld) {
+            currentScore = ((MyWorld) world).getScore();
+        } else if(world instanceof DarkWorld) {
+            currentScore = ((DarkWorld) world).getScore();
+        }
         // Remove apple and draw game over when apple gets to bottom
-        MyWorld world = (MyWorld) getWorld();
-        if(getY() >= world.getHeight())
+        if(getY() >= world.getHeight()-1)
         {
-            world.gameOver();
+            if (currentScore < 10)
+            {
+                ((MyWorld) world).gameOver();
+            }
+            else
+            {
+                ((DarkWorld) world).gameOver();
+            }
             world.removeObject(this);
         }
         
@@ -42,4 +64,5 @@ public class Apple extends Actor
     {
         speed = spd;
     }
+
 }

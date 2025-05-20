@@ -1,10 +1,12 @@
 import greenfoot.*;
+import java.util.List;
 
 public class MyWorld extends World {
     public int score = 0;
     Label scoreLabel;
     int level = 1;
     boolean gameOver = false;
+    Elephant elephant;
     
     /**
      * Constructor for objects of class MyWorld.
@@ -19,7 +21,7 @@ public class MyWorld extends World {
         setBackground(bg);
         
         //Create the elephant object
-        Elephant elephant = new Elephant();
+        elephant = new Elephant();
         addObject(elephant, 300, 300);
         
         //Create a label
@@ -27,7 +29,6 @@ public class MyWorld extends World {
         addObject(scoreLabel, 50, 50);
         
         createApple();
-        createPoisonousapple();
     }
     
     /**
@@ -48,8 +49,8 @@ public class MyWorld extends World {
         {
             if (Greenfoot.isKeyDown("space")) 
             {
-            TiTitleScreen titleScreen = new TiTitleScreen(); 
-            Greenfoot.setWorld(titleScreen);
+                TiTitleScreen titleScreen = new TiTitleScreen(); 
+                Greenfoot.setWorld(titleScreen);
             }
         }
     }
@@ -62,9 +63,19 @@ public class MyWorld extends World {
         score++;
         scoreLabel.setValue(score);
         
-        if(score % 5 == 0)
+        if(score % 7 == 0)
         {
             level += 1;
+        }
+        if(score == 10)
+        {
+            List<Apple> apples = getObjects(Apple.class);
+            for (Apple a : apples)
+            {
+                removeObject(a);
+            }
+            DarkWorld darkWorld = new DarkWorld(score, getElephant());
+            Greenfoot.setWorld(darkWorld);
         }
     }
     
@@ -90,12 +101,16 @@ public class MyWorld extends World {
         addObject(apple, x, y);
     }
     
-    public void createPoisonousapple()
+    public Elephant getElephant(){
+        return elephant;
+    }
+    
+    public int getScore()
     {
-        Poisonousapple poisonousapple = new Poisonousapple();
-        poisonousapple.setSpee(level);
-        int x = Greenfoot.getRandomNumber(600);
-        int y = 0;
-        addObject(poisonousapple, x, y);
+        return score;
+    } 
+    
+    public boolean isGameOver() {
+        return gameOver;
     }
 }
